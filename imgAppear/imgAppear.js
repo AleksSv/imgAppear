@@ -83,9 +83,9 @@ function imgAppearOpen() {
 
 	jQuery('<img/>', {
 		id: 'imgAppear_close_img',
+		src: 'imgAppear/close.png',
 		css: {
 			position: 'relative',
-			src: 'url(imgAppear/close.png)',
 			'float': 'left',
 			'z-index' : 3
 		},
