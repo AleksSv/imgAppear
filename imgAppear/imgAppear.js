@@ -2,6 +2,10 @@
 //To exit the display click anywhere not on the image itself
 function imgAppearOpen(imgSrc) {
 
+//Create image object from href source
+var t = new Image();
+t.src = $(imgSrc).attr("href");
+
 //Create Fixed Wrapper Div 	
 	jQuery('<div/>', {
 		id: 'imgAppear_wrapper',
@@ -34,9 +38,7 @@ function imgAppearOpen(imgSrc) {
 			}
 	}).appendTo('#imgAppear_wrapper').fadeIn('slow', function() {});
 
-//Create image object from href source
-var t = new Image();
-t.src = $(imgSrc).attr("href");
+
 
 //Get the Width and Height of the Browser
 var wrapWidth = $('#imgAppear_wrapper').width();
