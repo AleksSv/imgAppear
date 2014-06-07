@@ -44,34 +44,36 @@ t.src = $(imgSrc).attr("href");
 var wrapWidth = $('#imgAppear_wrapper').width();
 var wrapHeight = $('#imgAppear_wrapper').height();
 
-//Calculate the top and bottom height margins, and check if the image has greather width or height than browser
-//Purpose of + 10 is so the close img does not get cut off
-var marginHeight;
-var maxWidth;
-var maxHeight;
 
-if (wrapHeight > t.height + 10)
-{
-	marginHeight = (wrapHeight - t.height)/2;
-	maxHeight = t.height + 10;
-}
-else
-{
-	marginHeight = 0;
-	maxHeight = wrapHeight
-}
-
-if (wrapWidth > t.width + 10)
-{
-	maxWidth = t.width + 10;
-}
-else
-{
-	maxWidth = wrapWidth ;
-}
 
 //Make sure image loads first
 t.onload = function(){
+
+	//Calculate the top and bottom height margins, and check if the image has greather width or height than browser
+	//Purpose of + 10 is so the close img does not get cut off
+	var marginHeight;
+	var maxWidth;
+	var maxHeight;
+
+	if (wrapHeight > t.height + 10)
+	{
+		marginHeight = (wrapHeight - t.height)/2;
+		maxHeight = t.height + 10;
+	}
+	else
+	{
+		marginHeight = 0;
+		maxHeight = wrapHeight
+	}
+
+	if (wrapWidth > t.width + 10)
+	{
+		maxWidth = t.width + 10;
+	}
+	else
+	{
+		maxWidth = wrapWidth ;
+	}
 	//Div that holds the image to be displayed
 		jQuery('<div/>', {
 			id: 'imgAppear_img',
@@ -87,9 +89,11 @@ t.onload = function(){
 		}).appendTo('#imgAppear_wrapper');
 		
 		//Main image to be displayed
-		jQuery('<img/>', {
+//		$('#imgAppear_img').append(t).fadeIn('slow', function() {});
+
+
+		jQuery(t, {
 			id: 'imgAppear_img_img',
-			src: $(imgSrc).attr("href"),
 			css: {
 				position: 'relative',
 				top: 5,
