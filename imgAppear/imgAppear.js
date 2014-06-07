@@ -85,7 +85,7 @@ function imgAppearOpen() {
 		id: 'imgAppear_close_img',
 		css: {
 			position: 'relative',
-			src: 'url(close.png)',
+			src: 'url(imgAppear/close.png)',
 			'float': 'left',
 			'z-index' : 3
 		},
