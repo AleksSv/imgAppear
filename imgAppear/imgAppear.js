@@ -34,9 +34,6 @@ function imgAppearOpen(imgSrc) {
 			}
 	}).appendTo('#imgAppear_wrapper').fadeIn('slow', function() {});
 
-
-//$('#imgAppear_shade').fadeIn('slow', function() {});
-
 //Divs topFloat and leftFloat allow the image divs to be almost near the center
 	jQuery('<div/>', {
 		id: 'imgAppear_topFloat',
@@ -91,35 +88,25 @@ t.onload = function(){
 				'z-index' : 3
 			}
 		}).appendTo('#imgAppear_img').fadeIn('slow', function() {});
-		
-		//Div that holds the close button image
-		jQuery('<div/>', {
-			id: 'imgAppear_close',
-			css: {
-				position: 'relative',
-				width: '13px',
-				height: '13px',
-				'margin-left' : '-6px',
-				'margin-top' : -t.width/2 - 6,
-				'float': 'left',
-				'z-index' : 2
-			}
-		}).appendTo('#imgAppear_wrapper');
 
 		//Close Button Image
 		jQuery('<img/>', {
 			id: 'imgAppear_close_img',
 			src: 'imgAppear/close.png',
 			css: {
-				position: 'relative',
+				position: 'absolute',
+				left: t.width,
+				'margin-left' : '-8px',
+				'margin-top' :'-4px',				
 				'float': 'left',
-				display : 'none',	
+				display : 'none',
+				cursor: 'pointer',
 				'z-index' : 3
 			},
 			click: function(){
 				imgAppearClose();
 			}
-		}).appendTo('#imgAppear_close').fadeIn('slow', function() {});
+		}).appendTo('#imgAppear_img').fadeIn('slow', function() {});
 	};
 	
 	return false;
