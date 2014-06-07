@@ -62,60 +62,60 @@ function imgAppearOpen(imgSrc) {
 var t = new Image();
 t.src = $(imgSrc).attr("href");
 
-//Div that holds the image to be displayed
-	jQuery('<div/>', {
-		id: 'imgAppear_img',
-		css: {
-			background: 'green',
-			position: 'relative',
-			'margin-left': -t.width/2,
-			'margin-top': -t.height/2,
-			'float': 'left',
-			'z-index' : 2
-		}
-	}).appendTo('#imgAppear_wrapper');
-	
-	jQuery('<img/>', {
-		id: 'imgAppear_img_img',
-		src: $(imgSrc).attr("href"),
-		css: {
-			position: 'relative',
-			'float': 'left',
-			'z-index' : 3
-		}
-	}).appendTo('#imgAppear_img');
-	
-//Div that holds the close button image
-	jQuery('<div/>', {
-		id: 'imgAppear_close',
-		css: {
-			position: 'relative',
-			width: '13px',
-			height: '13px',
-			'margin-left' : '-6px',
-			'margin-top' : -t.width/2 - 6,
-			'float': 'left',
-			'z-index' : 2
-		}
-	}).appendTo('#imgAppear_wrapper');
+//Make sure image loads first
+t.onload = function(){
+	//Div that holds the image to be displayed
+		jQuery('<div/>', {
+			id: 'imgAppear_img',
+			css: {
+				background: 'green',
+				position: 'relative',
+				'margin-left': -t.width/2,
+				'margin-top': -t.height/2,
+				'float': 'left',
+				'z-index' : 2
+			}
+		}).appendTo('#imgAppear_wrapper');
+		
+		//Main image to be displayed
+		jQuery('<img/>', {
+			id: 'imgAppear_img_img',
+			src: $(imgSrc).attr("href"),
+			css: {
+				position: 'relative',
+				'float': 'left',
+				'z-index' : 3
+			}
+		}).appendTo('#imgAppear_img');
+		
+		//Div that holds the close button image
+		jQuery('<div/>', {
+			id: 'imgAppear_close',
+			css: {
+				position: 'relative',
+				width: '13px',
+				height: '13px',
+				'margin-left' : '-6px',
+				'margin-top' : -t.width/2 - 6,
+				'float': 'left',
+				'z-index' : 2
+			}
+		}).appendTo('#imgAppear_wrapper');
 
-//Close Button Image
-	jQuery('<img/>', {
-		id: 'imgAppear_close_img',
-		src: 'imgAppear/close.png',
-		css: {
-			position: 'relative',
-			'float': 'left',
-			'z-index' : 3
-		},
-		click: function(){
-			imgAppearClose();
-		}
-	}).appendTo('#imgAppear_close');
-
-
-
-
+		//Close Button Image
+		jQuery('<img/>', {
+			id: 'imgAppear_close_img',
+			src: 'imgAppear/close.png',
+			css: {
+				position: 'relative',
+				'float': 'left',
+				'z-index' : 3
+			},
+			click: function(){
+				imgAppearClose();
+			}
+		}).appendTo('#imgAppear_close');
+	};
 	return false;
 }
 
