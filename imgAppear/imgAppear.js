@@ -26,12 +26,16 @@ function imgAppearOpen(imgSrc) {
 			position: 'fixed',
 			top: 0,
 			left: 0,
+			display: 'none',
 			'z-index' : 1
 			},
 			click: function(){
 				imgAppearClose();
 			}
-	}).appendTo('#imgAppear_wrapper');
+	}).appendTo('#imgAppear_wrapper').fadeIn('slow', function() {});
+
+
+//$('#imgAppear_shade').fadeIn('slow', function() {});
 
 //Divs topFloat and leftFloat allow the image divs to be almost near the center
 	jQuery('<div/>', {
@@ -68,7 +72,6 @@ t.onload = function(){
 		jQuery('<div/>', {
 			id: 'imgAppear_img',
 			css: {
-				background: 'green',
 				position: 'relative',
 				'margin-left': -t.width/2,
 				'margin-top': -t.height/2,
@@ -84,9 +87,10 @@ t.onload = function(){
 			css: {
 				position: 'relative',
 				'float': 'left',
+				display : 'none',				
 				'z-index' : 3
 			}
-		}).appendTo('#imgAppear_img');
+		}).appendTo('#imgAppear_img').fadeIn('slow', function() {});
 		
 		//Div that holds the close button image
 		jQuery('<div/>', {
@@ -109,25 +113,21 @@ t.onload = function(){
 			css: {
 				position: 'relative',
 				'float': 'left',
+				display : 'none',	
 				'z-index' : 3
 			},
 			click: function(){
 				imgAppearClose();
 			}
-		}).appendTo('#imgAppear_close');
+		}).appendTo('#imgAppear_close').fadeIn('slow', function() {});
 	};
+	
 	return false;
 }
 
 //Removes all created divs and images from HTML
 function imgAppearClose() {
 
-$("#imgAppear_wrapper").remove();
-$("#imgAppear_shade").remove();
-$("#imgAppear_topFloat").remove();
-$("#imgAppear_leftFloat").remove();
-$("#imgAppear_img").remove();
-$("#imgAppear_img_img").remove();
-
-return true;
+	$("#imgAppear_wrapper").fadeOut("slow", function () {	$("#imgAppear_wrapper").remove(); });
+	return true;
 }
