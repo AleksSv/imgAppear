@@ -9,7 +9,7 @@ function imgAppearOpen(imgSrc) {
 			width: '100%',
 			height: '100%',
 			position: 'fixed',
-			'float' : 'left',
+			'z-index' : 2,
 			top:0,
 			left: 0
 		}
@@ -34,34 +34,39 @@ function imgAppearOpen(imgSrc) {
 			}
 	}).appendTo('#imgAppear_wrapper').fadeIn('slow', function() {});
 
-//Divs topFloat and leftFloat allow the image divs to be almost near the center
-	jQuery('<div/>', {
-		id: 'imgAppear_topFloat',
-		css: {
-			width: '100%',
-			height: '50%',
-			position: 'relative',
-			'float' : 'left',
-			top:0,
-			left: 0,
-		}
-	}).appendTo('#imgAppear_wrapper');
-
-	jQuery('<div/>', {
-		id: 'imgAppear_leftFloat',
-		css: {
-			width: '50%',
-			height: '50%',
-			position: 'relative',
-			'float' : 'left',
-			top: '50%',
-			left: 0
-		}
-	}).appendTo('#imgAppear_wrapper');
-
 //Create image object from href source
 var t = new Image();
 t.src = $(imgSrc).attr("href");
+
+//Get the Width and Height of the Browser
+var wrapWidth = $('#imgAppear_wrapper').width();
+var wrapHeight = $('#imgAppear_wrapper').height();
+
+//Calculate the top and bottom height margins, and check if the image has greather width or height than browser
+//Purpose of + 10 is so the close img does not get cut off
+var marginHeight;
+var maxWidth;
+var maxHeight;
+
+if (wrapHeight > t.height + 10)
+{
+	marginHeight = (wrapHeight - t.height)/2;
+	maxHeight = t.height + 10;
+}
+else
+{
+	marginHeight = 0;
+	maxHeight = wrapHeight
+}
+
+if (wrapWidth > t.width + 10)
+{
+	maxWidth = t.width + 10;
+}
+else
+{
+	maxWidth = wrapWidth ;
+}
 
 //Make sure image loads first
 t.onload = function(){
@@ -70,10 +75,12 @@ t.onload = function(){
 			id: 'imgAppear_img',
 			css: {
 				position: 'relative',
-				'margin-left': -t.width/2,
-				'margin-top': -t.height/2,
-				'float': 'left',
-				'z-index' : 2
+				overflow: 'auto',					
+				width:maxWidth,
+				height: maxHeight,
+				margin: '0 auto',
+				'margin-top': marginHeight,
+				'z-index' : 3
 			}
 		}).appendTo('#imgAppear_wrapper');
 		
@@ -83,9 +90,9 @@ t.onload = function(){
 			src: $(imgSrc).attr("href"),
 			css: {
 				position: 'relative',
-				'float': 'left',
+				top: 5,
 				display : 'none',				
-				'z-index' : 3
+				'z-index' : 2
 			}
 		}).appendTo('#imgAppear_img').fadeIn('slow', function() {});
 
@@ -96,19 +103,18 @@ t.onload = function(){
 			css: {
 				position: 'absolute',
 				left: t.width,
+				top: 5,
 				'margin-left' : '-8px',
 				'margin-top' :'-4px',				
-				'float': 'left',
 				display : 'none',
 				cursor: 'pointer',
-				'z-index' : 3
+				'z-index' : 2
 			},
 			click: function(){
 				imgAppearClose();
 			}
 		}).appendTo('#imgAppear_img').fadeIn('slow', function() {});
 	};
-	
 	return false;
 }
 
