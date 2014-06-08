@@ -5,7 +5,7 @@ function imgAppearOpen(imgSrc) {
 //Create image object from href source
 var t = new Image();
 t.src = $(imgSrc).attr("href");
-
+t.id = "imgAppear_img";
 //Create Fixed Wrapper Div 	
 	jQuery('<div/>', {
 		id: 'imgAppear_wrapper',
@@ -92,15 +92,12 @@ t.onload = function(){
 //		$('#imgAppear_img').append(t).fadeIn('slow', function() {});
 
 
-		jQuery(t, {
-			id: 'imgAppear_img_img',
-			css: {
+		jQuery(t).css({
 				position: 'relative',
 				top: 5,
 				display : 'none',				
 				'z-index' : 2
-			}
-		}).appendTo('#imgAppear_img').fadeIn('slow', function() {});
+			}).appendTo('#imgAppear_img').fadeIn('slow', function() {});
 
 		//Close Button Image
 		jQuery('<img/>', {
